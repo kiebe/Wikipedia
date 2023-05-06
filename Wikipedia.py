@@ -1,34 +1,34 @@
+'''
+!!!Программа работает только на версии питона 3.6.9!!!
+Так же надо уствновить custom tkinter: pip install customtkinter/pip3 install customtkinter
+'''
+
 import webbrowser
-from tkinter import *
-from time import *
+import customtkinter
 
-'''
-В общем это программа которая по запросу в поле ввода ищет статью на Википедии
-Если поле ввода будет пустое то будет показана главная страница Википедии
-'''
+customtkinter.set_appearance_mode("System")  
+customtkinter.set_default_color_theme("green") 
 
-root = Tk()
-root.geometry('272x137+300+200')
+root = customtkinter.CTk() 
+root.geometry("272x130")
 root.title('Wikipedia')
-root.config(bg='#171717')
 
-lb_head = Label(root, text='Wikipedia')
-lb_head.config(font=('Arial', 30), bg='#171717', fg='#ffffff')
+lb_head = customtkinter.CTkLabel(root, text='Wikipedia')
+lb_head.configure(font=('Arial', 30))
 lb_head.pack()
 
-lb_serch = Label(root, text='Название статьи:')
-lb_serch.config(font=('Arial', 10, 'bold'), bg='#171717', fg='#ffffff')
-lb_serch.place(x=10 ,y=70)
+lb_serch = customtkinter.CTkLabel(root, text='Название статьи:')
+lb_serch.configure(font=('Arial', 15,))
+lb_serch.place(x=10 ,y=52)
 
-en_serch = Entry(root, width=20, bg='#6b6b6b', fg='#ffffff')
-en_serch.place(x=135 ,y=72)
-
-def serch():
-    serch =  en_serch.get()
-    webbrowser.open_new_tab('https://ru.wikipedia.org/wiki/'+serch)
-
-btn_serch = Button(root, width=10, command=serch, text='Search')
-btn_serch.place(x=10, y=100)
+search_en = customtkinter.CTkEntry(root, width=135)
+search_en.place(x=135, y=52)
 
 
+def search():
+    search =  search_en.get()
+    webbrowser.open_new_tab('https://ru.wikipedia.org/wiki/'+search)
+
+button = customtkinter.CTkButton(root, text="search", command=search)
+button.place(x=10, y=93)
 root.mainloop()
